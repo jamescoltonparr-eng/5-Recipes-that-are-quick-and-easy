@@ -91,38 +91,31 @@
 <script>
   let recipes = JSON.parse(localStorage.getItem("recipes")) || [
     {
-      title: "Spaghetti",
-      image: "https://images.unsplash.com/photo-1589302168068-964664d93dc0",
-      ingredients: ["Pasta", "Jar sauce"],
-      steps: "Boil pasta, heat sauce, mix.",
+      title: "cheese omlette",
+      image: "https://www.epicurious.com/recipes/food/views/cheese-omelette-51262180",
+      ingredients: ["cheese", "eggs","1/2 tbs olive oil"],
+      steps: "put eggs in the bowl,cut some cheese up add a bit of milk heat up the pan woth 1/2 a tbs of olive oil and then wait till hot enough then pour the mixture into pan then cook.",
       comments: []
     },
     {
-      title: "Cheeseburger",
-      image: "https://images.unsplash.com/photo-1550547660-d9450f859349",
-      ingredients: ["Bun", "Patty", "Cheese"],
-      steps: "Cook patty, assemble burger.",
+      title: "caeser salad",
+      image: "https://www.chefdehome.com/recipes/1030/classic-caesar-salad",
+      ingredients: ["lettuce","croutons","chicken","parmesan"],
+      steps: "chop up lettuce then wash the chopped up salad then cutup some cooked chicken and grate some parmesan cheese over the sala then mix .",
       comments: []
     },
     {
-      title: "Pizza",
-      image: "https://images.unsplash.com/photo-1548365328-8b849e6c7b45",
-      ingredients: ["Dough", "Sauce", "Cheese"],
-      steps: "Top dough, bake 15 mins.",
+      title: "microwaved pizza",
+      image: "https://www.mydiasporakitchen.com/easy-no-bake-microwave-pizza/",
+      ingredients: ["any bread", "Sauce", "Cheese","topping of choice"],
+      steps: "Toast bread then put tomato sauce and cheese on followed by toppingof choice.",
       comments: []
     },
     {
-      title: "Pancakes",
-      image: "https://images.unsplash.com/photo-1587738347118-3e29a0b2c6c4",
-      ingredients: ["Mix", "Milk"],
-      steps: "Mix and cook on pan.",
-      comments: []
-    },
-    {
-      title: "Salad",
-      image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1",
-      ingredients: ["Lettuce", "Tomato"],
-      steps: "Chop and mix.",
+      title: "Patatas bravas",
+      image: "https://www.simplyrecipes.com/easy-patatas-brava-recipe-8770761",
+      ingredients: ["potatoes","hot sauce","aleoli"],
+      steps: "Dice the potatoes and then put them into a microwave safe bowl cover and put them in for two minutes once done see if they are ready if not put them in for longer once done put aleoli and hot sauce on them .",
       comments: []
     }
   ];
