@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quick & Easy Recipes</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff7f0;
+      padding: 20px;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #d35400;
+    }
+
+    .recipes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #e67e22;
+      color: white;
+      border: none;
+      padding: 8px;
+      margin-top: 8px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    textarea, input {
+      width: 100%;
+      margin-top: 5px;
+      padding: 6px;
+    }
+
+    .comments {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .comment {
+      background: #f4f4f4;
+      padding: 5px;
+      margin-top: 5px;
+      border-radius: 4px;
+    }
+
+    .add-recipe {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<h1>🍽 Quick & Easy Recipes</h1>
+
+<div id="recipes" class="recipes"></div>
+
+<div class="add-recipe">
+  <h2>Add Your Own Recipe</h2>
+  <input id="title" placeholder="Recipe name">
+  <input id="image" placeholder="Image URL">
+  <input id="ingredients" placeholder="Ingredients (comma separated)">
+  <input id="steps" placeholder="Quick steps">
+  <button onclick="addRecipe()">Add Recipe</button>
+</div>
+
+<script>
+  let recipes = JSON.parse(localStorage.getItem("recipes")) || [
+    {
+      title: "cheese omlette",
+      image: "https://www.epicurious.com/recipes/food/views/cheese-omelette-51262180",
+      ingredients: ["cheese", "eggs","1/2 tbs olive oil"],
+      steps: "put eggs in the bowl,cut some cheese up add a bit of milk heat up the pan woth 1/2 a tbs of olive oil and then wait till hot enough then pour the mixture into pan then cook.",
+      comments: []
+    },
+    {
+      title: "caeser salad",
+      image: "https://www.chefdehome.com/recipes/1030/classic-caesar-salad",
+      ingredients: ["lettuce","croutons","chicken","parmesan"],
+      steps: "chop up lettuce then wash the chopped up salad then cutup some cooked chicken and grate some parmesan cheese over the sala then mix .",
+      comments: []
+    },
+    {
+      title: "microwaved pizza",
+      image: "https://www.mydiasporakitchen.com/easy-no-bake-microwave-pizza/",
+      ingredients: ["any bread", "Sauce", "Cheese","topping of choice"],
+      steps: "Toast bread then put tomato sauce and cheese on followed by toppingof choice.",
+      comments: []
+    },
+    {
+      title: "Patatas bravas",
+      image: "https://www.simplyrecipes.com/easy-patatas-brava-recipe-8770761",
+      ingredients: ["potatoes","hot sauce","aleoli"],
+      steps: "Dice the potatoes and then put them into a microwave safe bowl cover and put them in for two minutes once done see if they are ready if not put them in for longer once done put aleoli and hot sauce on them .",
+      comments: []
+    }
+  ];
+
+  function save() {
+    localStorage.setItem("recipes", JSON.stringify(recipes));
+  }
+
+  function render() {
+    const container = document.getElementById("recipes");
+    container.innerHTML = "";
+
+    recipes.forEach((r, i) => {
+      container.innerHTML += `
+        <div class="recipe">
+          <img src="${r.image}">
+          <h3>${r.title}</h3>
+          <p><strong>Ingredients:</strong> ${r.ingredients.join(", ")}</p>
+          <p><strong>Steps:</strong> ${r.steps}</p>
+
+          <textarea id="c${i}" placeholder="Add a comment"></textarea>
+          <button onclick="addComment(${i})">Post Comment</button>
+
+          <div class="comments">
+            ${r.comments.map(c => `<div class="comment">${c}</div>`).join("")}
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  function addComment(i) {
+    const text = document.getElementById("c" + i).value;
+    if (text) {
+      recipes[i].comments.push(text);
+      save();
+      render();
+    }
+  }
+
+  function addRecipe() {
+    const title = document.getElementById("title").value;
+    const image = document.getElementById("image").value;
+    const ingredients = document.getElementById("ingredients").value.split(",");
+    const steps = document.getElementById("steps").value;
+
+    if (title && image && steps) {
+      recipes.push({ title, image, ingredients, steps, comments: [] });
+      save();
+      render();
+    }
+  }
+
+  render();
+</script>
+
+</body>
+</html> 
